@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portofolio Erdinus - Informatika, Accounting, Administration, dan Web Development." />
+    <title>Erdinus Portfolio App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="navbar">
+        <a class="brand" href="#home" aria-label="Home">
+          <span class="brand-mark">E</span>
+          <span>
+            <strong id="brandName">Erdinus</strong>
+            <small>Portfolio App</small>
+          </span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#projects">Project</a>
+          <a href="#experience">Pengalaman</a>
+          <a href="#contact">Kontak</a>
+          <button id="adminToggle" class="btn btn-ghost" type="button">Admin</button>
+        </nav>
+      </header>
+
+      <main>
+        <section id="home" class="hero section">
+          <div class="hero-copy">
+            <span class="eyebrow">Informatika • Accounting • Web Development</span>
+            <h1 id="heroTitle">Saya membangun sistem web yang rapi, fungsional, dan mudah dipakai.</h1>
+            <p id="heroSubtitle">Portofolio ini menampilkan project, skill, pengalaman kerja, dan kontak profesional saya.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#projects">Lihat Project</a>
+              <a class="btn btn-secondary" href="#contact">Hubungi Saya</a>
+            </div>
+            <div class="quick-stats">
+              <div><strong id="statProjects">0</strong><span>Project</span></div>
+              <div><strong id="statSkills">0</strong><span>Skill</span></div>
+              <div><strong id="statExperience">0</strong><span>Pengalaman</span></div>
+            </div>
+          </div>
+          <aside class="profile-card glass">
+            <div class="avatar" id="avatarInitial">E</div>
+            <h2 id="profileName">Erdinus</h2>
+            <p id="profileRole">Mahasiswa Informatika • Staff Accounting</p>
+            <p id="profileBio">Fokus pada administrasi, accounting, dan pengembangan web app yang praktis untuk bisnis.</p>
+            <div class="socials" id="socialLinks"></div>
+          </aside>
+        </section>
+
+        <section class="section split-section">
+          <div>
+            <span class="eyebrow">Skill utama</span>
+            <h2>Yang bisa saya bantu</h2>
+            <p class="muted">Data skill bisa ditambah, diubah, dan dihapus dari admin panel.</p>
+          </div>
+          <div class="skill-grid" id="skillsGrid"></div>
+        </section>
+
+        <section id="projects" class="section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Project</span>
+              <h2>Project terbaru</h2>
+            </div>
+            <p class="muted">Mirip konsep UangKu: konten portofolio bisa dikelola sendiri tanpa edit coding.</p>
+          </div>
+          <div class="project-grid" id="projectsGrid"></div>
+        </section>
+
+        <section id="experience" class="section split-section">
+          <div>
+            <span class="eyebrow">Pengalaman</span>
+            <h2>Riwayat kerja & pendidikan</h2>
+            <p class="muted">Cocok untuk menjelaskan kombinasi skill Informatika, accounting, dan administrasi.</p>
+          </div>
+          <div class="timeline" id="experienceList"></div>
+        </section>
+
+        <section id="contact" class="section contact-section glass">
+          <div>
+            <span class="eyebrow">Kontak</span>
+            <h2>Siap diskusi project?</h2>
+            <p class="muted">Pesan yang dikirim akan masuk ke tabel Supabase. Kalau Supabase belum diset, pesan disimpan lokal sebagai demo.</p>
+          </div>
+          <form id="contactForm" class="form-card">
+            <label>Nama<input name="name" required placeholder="Nama kamu" /></label>
+            <label>Email<input name="email" type="email" required placeholder="email@domain.com" /></label>
+            <label>Pesan<textarea name="message" required rows="4" placeholder="Tulis pesan..." ></textarea></label>
+            <button class="btn btn-primary" type="submit">Kirim Pesan</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <div id="adminPanel" class="admin-panel" aria-hidden="true">
+      <div class="admin-card">
+        <div class="admin-head">
+          <div>
+            <span class="eyebrow">Admin Panel</span>
+            <h2>Kelola Portofolio</h2>
+          </div>
+          <button id="closeAdmin" class="icon-btn" type="button" aria-label="Tutup">×</button>
+        </div>
+
+        <div id="loginView" class="admin-view">
+          <p class="muted">Login pakai akun Supabase Auth. Buat user admin dari Supabase Dashboard → Authentication.</p>
+          <form id="loginForm" class="stack-form">
+            <label>Email<input name="email" type="email" required placeholder="admin@email.com" /></label>
+            <label>Password<input name="password" type="password" required placeholder="••••••••" /></label>
+            <button class="btn btn-primary" type="submit">Login Admin</button>
+          </form>
+        </div>
+
+        <div id="dashboardView" class="admin-view hidden">
+          <div class="admin-toolbar">
+            <button class="btn btn-secondary tab-btn active" data-tab="profile">Profil</button>
+            <button class="btn btn-secondary tab-btn" data-tab="projects">Project</button>
+            <button class="btn btn-secondary tab-btn" data-tab="skills">Skill</button>
+            <button class="btn btn-secondary tab-btn" data-tab="experience">Pengalaman</button>
+            <button class="btn btn-secondary tab-btn" data-tab="messages">Pesan</button>
+            <button id="logoutBtn" class="btn btn-danger" type="button">Logout</button>
+          </div>
+
+          <section class="tab-content" id="tab-profile">
+            <form id="profileForm" class="stack-form two-col">
+              <label>Nama<input name="full_name" required /></label>
+              <label>Role<input name="role" required /></label>
+              <label>Judul hero<input name="headline" required /></label>
+              <label>Email kontak<input name="email" type="email" /></label>
+              <label>WhatsApp<input name="whatsapp" placeholder="628..." /></label>
+              <label>GitHub<input name="github" placeholder="https://github.com/..." /></label>
+              <label>LinkedIn<input name="linkedin" placeholder="https://linkedin.com/in/..." /></label>
+              <label>Instagram<input name="instagram" placeholder="https://instagram.com/..." /></label>
+              <label class="full">Bio<textarea name="bio" rows="4"></textarea></label>
+              <button class="btn btn-primary full" type="submit">Simpan Profil</button>
+            </form>
+          </section>
+
+          <section class="tab-content hidden" id="tab-projects">
+            <form id="projectForm" class="stack-form two-col">
+              <input type="hidden" name="id" />
+              <label>Judul<input name="title" required /></label>
+              <label>Kategori<input name="category" placeholder="Web App / UI / Accounting" /></label>
+              <label>URL demo<input name="demo_url" placeholder="https://..." /></label>
+              <label>URL repo<input name="repo_url" placeholder="https://github.com/..." /></label>
+              <label>Gambar URL<input name="image_url" placeholder="https://..." /></label>
+              <label>Tech stack<input name="tech_stack" placeholder="Supabase, Vercel, JavaScript" /></label>
+              <label class="full">Deskripsi<textarea name="description" required rows="4"></textarea></label>
+              <button class="btn btn-primary full" type="submit">Simpan Project</button>
+            </form>
+            <div id="adminProjects" class="admin-list"></div>
+          </section>
+
+          <section class="tab-content hidden" id="tab-skills">
+            <form id="skillForm" class="stack-form two-col">
+              <input type="hidden" name="id" />
+              <label>Nama skill<input name="name" required /></label>
+              <label>Level<input name="level" type="number" min="1" max="100" value="80" /></label>
+              <label class="full">Deskripsi<input name="description" /></label>
+              <button class="btn btn-primary full" type="submit">Simpan Skill</button>
+            </form>
+            <div id="adminSkills" class="admin-list"></div>
+          </section>
+
+          <section class="tab-content hidden" id="tab-experience">
+            <form id="experienceForm" class="stack-form two-col">
+              <input type="hidden" name="id" />
+              <label>Title<input name="title" required /></label>
+              <label>Organisasi<input name="organization" required /></label>
+              <label>Periode<input name="period" placeholder="2024 - Sekarang" /></label>
+              <label>Urutan<input name="sort_order" type="number" value="1" /></label>
+              <label class="full">Deskripsi<textarea name="description" rows="3"></textarea></label>
+              <button class="btn btn-primary full" type="submit">Simpan Pengalaman</button>
+            </form>
+            <div id="adminExperience" class="admin-list"></div>
+          </section>
+
+          <section class="tab-content hidden" id="tab-messages">
+            <div id="adminMessages" class="admin-list"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
